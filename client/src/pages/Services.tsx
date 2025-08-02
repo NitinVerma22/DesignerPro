@@ -50,7 +50,7 @@ export default function Services() {
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
             <h2 className="text-3xl lg:text-5xl font-bold mb-6 text-text">
-              Service <span class="text-gradient">Packages</span>
+              Service <span className="text-gradient">Packages</span>
             </h2>
             <p className="text-lg text-text-secondary max-w-2xl mx-auto">
               Choose from our carefully crafted service packages designed to meet your specific business needs.
