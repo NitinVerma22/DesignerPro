@@ -1,0 +1,229 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* Blue/White Theme (Default) */
+  --color-bg: hsl(0, 0%, 100%);
+  --color-bg-secondary: hsl(210, 20%, 98%);
+  --color-text: hsl(222, 84%, 5%);
+  --color-text-secondary: hsl(215, 16%, 47%);
+  --color-primary: hsl(221, 83%, 53%);
+  --color-primary-dark: hsl(224, 76%, 48%);
+  --color-accent: hsl(142, 76%, 36%);
+  --color-border: hsl(214, 32%, 91%);
+
+  --background: hsl(0, 0%, 100%);
+  --foreground: hsl(222, 84%, 5%);
+  --muted: hsl(210, 40%, 96%);
+  --muted-foreground: hsl(215, 16%, 47%);
+  --popover: hsl(0, 0%, 100%);
+  --popover-foreground: hsl(222, 84%, 5%);
+  --card: hsl(0, 0%, 100%);
+  --card-foreground: hsl(222, 84%, 5%);
+  --border: hsl(214, 32%, 91%);
+  --input: hsl(214, 32%, 91%);
+  --primary: hsl(221, 83%, 53%);
+  --primary-foreground: hsl(210, 40%, 98%);
+  --secondary: hsl(210, 40%, 96%);
+  --secondary-foreground: hsl(222, 47%, 11%);
+  --accent: hsl(210, 40%, 96%);
+  --accent-foreground: hsl(222, 47%, 11%);
+  --destructive: hsl(0, 84%, 60%);
+  --destructive-foreground: hsl(210, 40%, 98%);
+  --ring: hsl(221, 83%, 53%);
+  --radius: 0.5rem;
+}
+
+.theme-purple-dark {
+  --color-bg: hsl(222, 84%, 5%);
+  --color-bg-secondary: hsl(217, 32%, 17%);
+  --color-text: hsl(210, 40%, 98%);
+  --color-text-secondary: hsl(215, 20%, 65%);
+  --color-primary: hsl(263, 70%, 50%);
+  --color-primary-dark: hsl(262, 83%, 58%);
+  --color-accent: hsl(322, 65%, 55%);
+  --color-border: hsl(217, 32%, 17%);
+
+  --background: hsl(222, 84%, 5%);
+  --foreground: hsl(210, 40%, 98%);
+  --muted: hsl(217, 32%, 17%);
+  --muted-foreground: hsl(215, 20%, 65%);
+  --popover: hsl(222, 84%, 5%);
+  --popover-foreground: hsl(210, 40%, 98%);
+  --card: hsl(222, 84%, 5%);
+  --card-foreground: hsl(210, 40%, 98%);
+  --border: hsl(217, 32%, 17%);
+  --input: hsl(217, 32%, 17%);
+  --primary: hsl(263, 70%, 50%);
+  --primary-foreground: hsl(210, 40%, 98%);
+  --secondary: hsl(217, 32%, 17%);
+  --secondary-foreground: hsl(210, 40%, 98%);
+  --accent: hsl(217, 32%, 17%);
+  --accent-foreground: hsl(210, 40%, 98%);
+  --destructive: hsl(0, 63%, 31%);
+  --destructive-foreground: hsl(210, 40%, 98%);
+  --ring: hsl(263, 70%, 50%);
+}
+
+.theme-orange-cream {
+  --color-bg: hsl(33, 100%, 96%);
+  --color-bg-secondary: hsl(0, 0%, 100%);
+  --color-text: hsl(20, 14%, 4%);
+  --color-text-secondary: hsl(25, 45%, 37%);
+  --color-primary: hsl(24, 95%, 53%);
+  --color-primary-dark: hsl(20, 91%, 48%);
+  --color-accent: hsl(0, 72%, 51%);
+  --color-border: hsl(27, 56%, 84%);
+
+  --background: hsl(33, 100%, 96%);
+  --foreground: hsl(20, 14%, 4%);
+  --muted: hsl(33, 100%, 94%);
+  --muted-foreground: hsl(25, 45%, 37%);
+  --popover: hsl(0, 0%, 100%);
+  --popover-foreground: hsl(20, 14%, 4%);
+  --card: hsl(0, 0%, 100%);
+  --card-foreground: hsl(20, 14%, 4%);
+  --border: hsl(27, 56%, 84%);
+  --input: hsl(27, 56%, 84%);
+  --primary: hsl(24, 95%, 53%);
+  --primary-foreground: hsl(0, 0%, 100%);
+  --secondary: hsl(33, 100%, 94%);
+  --secondary-foreground: hsl(20, 14%, 4%);
+  --accent: hsl(33, 100%, 94%);
+  --accent-foreground: hsl(20, 14%, 4%);
+  --destructive: hsl(0, 72%, 51%);
+  --destructive-foreground: hsl(0, 0%, 100%);
+  --ring: hsl(24, 95%, 53%);
+}
+
+.theme-teal-gray {
+  --color-bg: hsl(210, 20%, 98%);
+  --color-bg-secondary: hsl(0, 0%, 100%);
+  --color-text: hsl(215, 25%, 27%);
+  --color-text-secondary: hsl(215, 16%, 47%);
+  --color-primary: hsl(173, 80%, 40%);
+  --color-primary-dark: hsl(172, 66%, 50%);
+  --color-accent: hsl(185, 84%, 44%);
+  --color-border: hsl(214, 20%, 69%);
+
+  --background: hsl(210, 20%, 98%);
+  --foreground: hsl(215, 25%, 27%);
+  --muted: hsl(210, 20%, 96%);
+  --muted-foreground: hsl(215, 16%, 47%);
+  --popover: hsl(0, 0%, 100%);
+  --popover-foreground: hsl(215, 25%, 27%);
+  --card: hsl(0, 0%, 100%);
+  --card-foreground: hsl(215, 25%, 27%);
+  --border: hsl(214, 20%, 69%);
+  --input: hsl(214, 20%, 69%);
+  --primary: hsl(173, 80%, 40%);
+  --primary-foreground: hsl(0, 0%, 100%);
+  --secondary: hsl(210, 20%, 96%);
+  --secondary-foreground: hsl(215, 25%, 27%);
+  --accent: hsl(210, 20%, 96%);
+  --accent-foreground: hsl(215, 25%, 27%);
+  --destructive: hsl(0, 84%, 60%);
+  --destructive-foreground: hsl(210, 40%, 98%);
+  --ring: hsl(173, 80%, 40%);
+}
+
+@layer base {
+  * {
+    @apply border-border transition-colors duration-300;
+  }
+
+  body {
+    @apply font-sans antialiased;
+    background-color: var(--color-bg);
+    color: var(--color-text);
+  }
+}
+
+@layer utilities {
+  .bg-bg {
+    background-color: var(--color-bg);
+  }
+  
+  .bg-bg-secondary {
+    background-color: var(--color-bg-secondary);
+  }
+  
+  .text-text {
+    color: var(--color-text);
+  }
+  
+  .text-text-secondary {
+    color: var(--color-text-secondary);
+  }
+  
+  .bg-primary {
+    background-color: var(--color-primary);
+  }
+  
+  .bg-primary-dark {
+    background-color: var(--color-primary-dark);
+  }
+  
+  .text-primary {
+    color: var(--color-primary);
+  }
+  
+  .text-primary-dark {
+    color: var(--color-primary-dark);
+  }
+  
+  .text-accent {
+    color: var(--color-accent);
+  }
+  
+  .border-border {
+    border-color: var(--color-border);
+  }
+
+  .gradient-bg {
+    background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
+  }
+
+  .text-gradient {
+    background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-accent) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .animate-fade-in {
+    animation: fadeIn 0.5s ease-in-out;
+  }
+
+  .animate-slide-up {
+    animation: slideUp 0.6s ease-out;
+  }
+
+  .animate-float {
+    animation: float 3s ease-in-out infinite;
+  }
+
+  .card-hover {
+    @apply transition-all duration-300;
+  }
+
+  .card-hover:hover {
+    @apply transform -translate-y-1 shadow-xl;
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
