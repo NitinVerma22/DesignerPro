@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-align: center;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+        }
+        .btn {
+            background: #ff6b6b;
+            color: white;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 10px;
+            transition: all 0.3s ease;
+        }
+        .btn:hover {
+            background: #ff5252;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🚀 Website Test Page</h1>
+        <p>यदि आप यह page देख रहे हैं, तो server काम कर रहा है!</p>
+        <p>If you can see this page, the server is working!</p>
+        
+        <div>
+            <button class="btn" onclick="testReact()">Test React App</button>
+            <button class="btn" onclick="window.location.href='/'">Go to Main Site</button>
+        </div>
+        
+        <div id="status" style="margin-top: 20px;"></div>
+    </div>
+
+    <script>
+        function testReact() {
+            const status = document.getElementById('status');
+            status.innerHTML = '<p>Testing React app loading...</p>';
+            
+            fetch('/src/main.tsx')
+                .then(response => {
+                    if (response.ok) {
+                        status.innerHTML = '<p style="color: #4CAF50;">✅ React files accessible</p>';
+                        setTimeout(() => {
+                            window.location.href = '/';
+                        }, 1000);
+                    } else {
+                        status.innerHTML = '<p style="color: #f44336;">❌ React files not accessible</p>';
+                    }
+                })
+                .catch(error => {
+                    status.innerHTML = '<p style="color: #f44336;">❌ Error: ' + error.message + '</p>';
+                });
+        }
+        
+        console.log('Test page loaded successfully!');
+    </script>
+</body>
+</html>
