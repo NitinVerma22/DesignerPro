@@ -5,6 +5,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { useToast } from "@/hooks/use-toast";
+import { Typewriter } from "react-simple-typewriter";
 
 interface FormData {
   name: string;
@@ -54,23 +55,32 @@ export function ContactSection() {
     }
   };
 
-  return (
+  return (<>
     <section className="bg-bg py-20">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
           <h2 className="text-3xl lg:text-5xl font-bold mb-6 text-text">
-            Get In <span className="text-gradient">Touch</span>
+            Contact <span className="text-gradient">Us</span>
           </h2>
           <p className="text-lg text-text-secondary max-w-2xl mx-auto">
-            Ready to start your next project? Contact us today and let's discuss how we can help bring your vision to life.
-          </p>
+             <Typewriter
+                  words={[" Ready to start your next project? Contact us today and let\u0027s discuss how we can help bring your vision to life."
+          ]}
+                  loop={false}
+                  cursor
+                  cursorStyle="_"
+                  typeSpeed={20}
+                  deleteSpeed={10}
+                  delaySpeed={300}
+                />
+           </p>
         </div>
 
         <div className="grid lg:grid-cols-2 gap-12">
           {/* Contact Info */}
           <div>
             <div className="space-y-8">
-              <div className="flex items-start space-x-4">
+              {/* <div className="flex items-start space-x-4">
                 <div className="w-12 h-12 gradient-bg rounded-lg flex items-center justify-center flex-shrink-0">
                   <MapPin className="text-white w-6 h-6" />
                 </div>
@@ -78,7 +88,7 @@ export function ContactSection() {
                   <h3 className="text-xl font-semibold mb-2 text-text">Office Location</h3>
                   <p className="text-text-secondary">123 Design Street<br />Creative District, CD 12345<br />United States</p>
                 </div>
-              </div>
+              </div> */}
 
               <div className="flex items-start space-x-4">
                 <div className="w-12 h-12 gradient-bg rounded-lg flex items-center justify-center flex-shrink-0">
@@ -86,7 +96,7 @@ export function ContactSection() {
                 </div>
                 <div>
                   <h3 className="text-xl font-semibold mb-2 text-text">Phone Number</h3>
-                  <p className="text-text-secondary">+1 (555) 123-4567<br />Mon - Fri: 9AM - 6PM</p>
+                  <p className="text-text-secondary">+91  7376742022<br />Mon - Sun: 9AM - 6PM</p>
                 </div>
               </div>
 
@@ -96,7 +106,7 @@ export function ContactSection() {
                 </div>
                 <div>
                   <h3 className="text-xl font-semibold mb-2 text-text">Email Address</h3>
-                  <p className="text-text-secondary">hello@designpro.com<br />support@designpro.com</p>
+                  <p className="text-text-secondary">hellodesignpro@gmail.com<br />supportdesignpro@gmail.com</p>
                 </div>
               </div>
             </div>
@@ -196,5 +206,53 @@ export function ContactSection() {
         </div>
       </div>
     </section>
+    {/* FAQ Section */}
+    <section className="bg-bg-secondary py-20">
+      <div className="container mx-auto px-4">
+        <div className="text-center mb-16">
+          <h2 className="text-3xl lg:text-5xl font-bold mb-6 text-text">
+            Frequently Asked <span className="text-gradient">Questions</span>
+          </h2>
+          <p className="text-lg text-text-secondary max-w-2xl mx-auto">
+            Have questions? We have answers. Here are some of the most common questions we receive.
+          </p>
+        </div>
+
+        <div className="max-w-3xl mx-auto space-y-8">
+          <div className="bg-bg rounded-xl p-6 border border-border">
+            <h3 className="text-xl font-bold text-text mb-3">How long does a typical project take?</h3>
+            <p className="text-text-secondary">
+              Project timelines vary depending on scope and complexity. A simple website might take 2-4 weeks, 
+              while a complex web application could take 3-6 months. We'll provide a detailed timeline during our consultation.
+            </p>
+          </div>
+
+          <div className="bg-bg rounded-xl p-6 border border-border">
+            <h3 className="text-xl font-bold text-text mb-3">What's included in your design process?</h3>
+            <p className="text-text-secondary">
+              Our design process includes research, wireframing, visual design, prototyping, and user testing. 
+              We work closely with you throughout each phase to ensure the final product meets your goals.
+            </p>
+          </div>
+
+          <div className="bg-bg rounded-xl p-6 border border-border">
+            <h3 className="text-xl font-bold text-text mb-3">Do you provide ongoing support?</h3>
+            <p className="text-text-secondary">
+              Yes! We offer various maintenance and support packages to keep your website or application 
+              running smoothly, secure, and up-to-date after launch.
+            </p>
+          </div>
+
+          <div className="bg-bg rounded-xl p-6 border border-border">
+            <h3 className="text-xl font-bold text-text mb-3">Can you work with our existing brand?</h3>
+            <p className="text-text-secondary">
+              Absolutely! We can work within your existing brand guidelines or help refresh and enhance 
+              your brand identity as part of the project.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+    </>
   );
 }

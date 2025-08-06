@@ -1,6 +1,8 @@
-import { ArrowRight, Palette, Code, Megaphone, Smartphone, Search, TrendingUp } from "lucide-react";
+import { Palette, Code, Megaphone, Smartphone, Search, TrendingUp, ArrowRight } from "lucide-react";
 import type { Service } from "@/types";
-
+import { useState } from "react";
+import { GetPricingModal } from "../models/GetPricingModel"; 
+import { Typewriter } from "react-simple-typewriter";
 const services: Service[] = [
   {
     id: '1',
@@ -56,6 +58,7 @@ const iconMap = {
 };
 
 export function ServicesSection() {
+   const [showModal, setShowModal] = useState(false);
   return (
     <section className="bg-bg-secondary py-20">
       <div className="container mx-auto px-4">
@@ -64,7 +67,16 @@ export function ServicesSection() {
             Our <span className="text-gradient">Services</span>
           </h2>
           <p className="text-lg text-text-secondary max-w-2xl mx-auto">
-            We offer comprehensive design and development services to help your business thrive in the digital landscape.
+           
+               <Typewriter
+                  words={[' We offer comprehensive design and development services to help your business thrive in the digital landscape.']}
+                  loop={false}
+                  cursor
+                  cursorStyle="_"
+                  typeSpeed={20}
+                  deleteSpeed={10}
+                  delaySpeed={300}
+                />
           </p>
         </div>
 
@@ -80,9 +92,25 @@ export function ServicesSection() {
                 <p className="text-text-secondary mb-6">
                   {service.description}
                 </p>
-                <a href={service.link} className="text-primary hover:text-primary-dark font-medium inline-flex items-center">
-                  Learn More <ArrowRight className="ml-2 w-4 h-4" />
-                </a>
+              
+
+                <button
+                  onClick={() => setShowModal(true)}
+                  className="inline-flex items-center gap-2 text-primary hover:underline font-medium transition-colors duration-200 group"
+                >
+                  Learn more
+                  <ArrowRight
+                  className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-1"
+                  strokeWidth={2.2}
+                  />
+                </button>
+               {showModal && (
+        <GetPricingModal
+          serviceName="website"
+          heading="Learn More"
+          onClose={() => setShowModal(false)}
+        />
+      )}
               </div>
             );
           })}

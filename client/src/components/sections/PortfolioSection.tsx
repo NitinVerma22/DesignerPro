@@ -1,56 +1,36 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import type { PortfolioItem } from "@/types";
-
+import { Link } from "wouter";
+import nqDesignsImg from "../../images/nqdesigns.png";
+import cretoImg from "../../images/creto.png";
+import wellnessPointImg from "../../images/wellness.png";
 const portfolioItems: PortfolioItem[] = [
   {
     id: '1',
-    title: 'E-Commerce Platform',
-    description: 'Modern shopping experience with seamless checkout',
-    image: 'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600',
-    category: 'web',
-    tags: ['React', 'E-commerce', 'UI/UX']
+    title: "NQ Designs ",
+    description: "An Interior Design Agency website showcasing portfolio, services, and client testimonials.",
+    image: nqDesignsImg,
+    category: "Enterprise-Grade Website",
+    tags: ["interior", "agency", "portfolio", "web"]
   },
   {
     id: '2',
-    title: 'Fitness Mobile App',
-    description: 'Health tracking with intuitive user interface',
-    image: 'https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600',
-    category: 'mobile',
-    tags: ['React Native', 'Health', 'Mobile']
+    title: "Creto E-commerce",
+    description: "Modern E-commerce platform with a focus on premium bicycles, offering a seamless shopping experience.",
+    image: cretoImg,
+    category: "E-commerce",
+    tags: ["ecommerce", "bicycles", "shopping", "web"]
   },
   {
     id: '3',
-    title: 'Corporate Website',
-    description: 'Professional brand presence with modern design',
-    image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600',
-    category: 'web',
-    tags: ['Corporate', 'Web Design', 'Branding']
+    title: "Wellness Point Health Checkup",
+    description: "Comprehensive health checkup platform with user-friendly interface and calendar-based appointments.",
+    image: wellnessPointImg,
+    category: "Health & Wellness",
+    tags: ["health", "checkup", "appointments", "web"]
   },
-  {
-    id: '4',
-    title: 'Restaurant App',
-    description: 'Food ordering with real-time tracking',
-    image: 'https://images.unsplash.com/photo-1414235077428-338989a2e8c0?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600',
-    category: 'mobile',
-    tags: ['Food', 'Mobile App', 'Ordering']
-  },
-  {
-    id: '5',
-    title: 'Creative Portfolio',
-    description: 'Artistic showcase with immersive galleries',
-    image: 'https://images.unsplash.com/photo-1561736778-92e52a7769ef?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600',
-    category: 'branding',
-    tags: ['Portfolio', 'Creative', 'Gallery']
-  },
-  {
-    id: '6',
-    title: 'SaaS Dashboard',
-    description: 'Data visualization with advanced analytics',
-    image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600',
-    category: 'web',
-    tags: ['SaaS', 'Dashboard', 'Analytics']
-  }
+
 ];
 
 const categories = [
@@ -72,7 +52,7 @@ export function PortfolioSection() {
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
           <h2 className="text-3xl lg:text-5xl font-bold mb-6 text-text">
-            Our <span className="text-gradient">Portfolio</span>
+            Our <span className="text-gradient">Porojects</span>
           </h2>
           <p className="text-lg text-text-secondary max-w-2xl mx-auto">
             Explore our recent projects and see how we've helped businesses transform their digital presence.
@@ -119,7 +99,7 @@ export function PortfolioSection() {
 
         <div className="text-center mt-12">
           <Button className="gradient-bg text-white hover:shadow-xl transition-all duration-300 transform hover:scale-105">
-            View All Projects
+          <Link to="/portfolio#allprojects" className="block w-full h-full">View All Projects</Link>
           </Button>
         </div>
       </div>

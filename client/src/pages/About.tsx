@@ -1,37 +1,41 @@
 import { Users, Award, Clock, Target } from "lucide-react";
 import { Button } from "@/components/ui/button";
-
+import { Typewriter } from 'react-simple-typewriter';
+import nitinImg from "@/images/founder.jpg"; 
+import suyashImg from "@/images/suyash.jpg"; 
+import AmirImg from "@/images/amir.png"; 
+import aryanImg from "@/images/aryan.jpg"; 
 export default function About() {
   const stats = [
-    { icon: Users, label: "Happy Clients", value: "150+" },
-    { icon: Award, label: "Projects Completed", value: "300+" },
-    { icon: Clock, label: "Years of Experience", value: "8+" },
+    { icon: Users, label: "Happy Clients", value: "120+" },
+    { icon: Award, label: "Projects Completed", value: "200+" },
+    { icon: Clock, label: "Years of Experience", value: "4+" },
     { icon: Target, label: "Success Rate", value: "98%" },
   ];
 
   const team = [
     {
-      name: "Alex Rodriguez",
+      name: "Nitin Verma",
       role: "Founder & CEO",
-      image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&h=300",
-      bio: "Visionary leader with 10+ years in digital design and strategy."
+      image: nitinImg, // use the imported local image
+      bio: "Visionary leader with 4+ years in digital design and strategy."
     },
     {
-      name: "Sarah Chen",
+      name: "Suyash Sharma",
       role: "Lead Designer",
-      image: "https://images.unsplash.com/photo-1494790108755-2616b612b786?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&h=300",
+      image: suyashImg,
       bio: "Creative genius specializing in user experience and brand identity."
     },
     {
-      name: "Mike Johnson",
+      name: "Amir Khan",
       role: "Technical Lead",
-      image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&h=300",
+      image: AmirImg,
       bio: "Full-stack developer passionate about cutting-edge technologies."
     },
     {
-      name: "Emma Wilson",
+      name: "Aryan Verma",
       role: "Marketing Director",
-      image: "https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&h=300",
+      image: aryanImg,
       bio: "Strategic marketer driving growth through data-driven campaigns."
     }
   ];
@@ -39,17 +43,25 @@ export default function About() {
   return (
     <div className="animate-fade-in">
       {/* Hero Section */}
-      <section className="bg-bg py-20 lg:py-32">
+    <section className="bg-bg py-20 lg:py-32">
         <div className="container mx-auto px-4 text-center">
           <h1 className="text-4xl lg:text-6xl font-bold mb-6">
             About <span className="text-gradient">DesignPro</span>
           </h1>
           <p className="text-lg text-text-secondary max-w-3xl mx-auto mb-8">
-            We're a passionate team of designers, developers, and strategists dedicated to creating 
-            exceptional digital experiences that drive real business results.
-          </p>
+
+  <Typewriter
+      words={['We are a passionate team of designers, developers, and strategists dedicated to creating exceptional digital experiences that drive real business results.']}
+      loop={false}
+      cursor
+      cursorStyle="_"
+      typeSpeed={20}
+      deleteSpeed={10}
+      delaySpeed={300}
+    />
+    </p>
         </div>
-      </section>
+      </section>  
 
       {/* Our Story */}
       <section className="bg-bg-secondary py-20">
@@ -73,9 +85,7 @@ export default function About() {
                   helping them transform their digital presence and achieve their business goals.
                 </p>
               </div>
-              <Button className="mt-8 gradient-bg text-white hover:shadow-xl transition-all duration-300 transform hover:scale-105">
-                Work With Us
-              </Button>
+              
             </div>
             
             <div className="bg-bg rounded-2xl p-8 shadow-lg border border-border">
@@ -174,26 +184,6 @@ export default function About() {
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="bg-gradient-to-r from-primary to-primary-dark py-20">
-        <div className="container mx-auto px-4 text-center">
-          <h2 className="text-3xl lg:text-5xl font-bold mb-6 text-white">
-            Ready to Work Together?
-          </h2>
-          <p className="text-lg text-white/90 max-w-2xl mx-auto mb-8">
-            Let's discuss your project and see how our team can help bring your vision to life. 
-            Contact us today for a free consultation.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button variant="secondary" className="bg-white text-primary hover:bg-white/90">
-              Get In Touch
-            </Button>
-            <Button variant="outline" className="border-white text-white hover:bg-white hover:text-primary">
-              View Our Work
-            </Button>
-          </div>
-        </div>
-      </section>
     </div>
   );
 }

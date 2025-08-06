@@ -1,46 +1,35 @@
 import { ArrowRight, CheckCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { ServicesSection } from "@/components/sections/ServicesSection";
-
+import { GetPricingModal } from "../components/models/GetPricingModel";
+import { useState } from "react";
+import { Link } from "wouter";
 export default function Services() {
+   const [showModal, setShowModal] = useState(false);
   const serviceDetails = [
     {
       title: "Web Design & Development",
       description: "Create stunning, responsive websites that convert visitors into customers.",
       features: ["Responsive Design", "SEO Optimized", "Fast Loading", "Mobile First", "Modern UI/UX"],
-      price: "Starting at $2,500"
+      price: "Starting at Rs. 7,500"
     },
     {
       title: "Mobile App Development",
       description: "Build native and cross-platform apps that engage users and drive business growth.",
       features: ["iOS & Android", "Cross-platform", "Native Performance", "App Store Optimization", "Push Notifications"],
-      price: "Starting at $5,000"
+      price: "Starting at Rs. 15,000"
     },
     {
       title: "Digital Marketing",
       description: "Comprehensive marketing strategies to boost your online presence and ROI.",
       features: ["Social Media Marketing", "Content Strategy", "PPC Campaigns", "Email Marketing", "Brand Strategy"],
-      price: "Starting at $1,200/month"
+      price: "Starting at Rs. 3,200/month"
     }
   ];
 
   return (
     <div className="animate-fade-in">
-      {/* Hero Section */}
-      <section className="bg-bg py-20 lg:py-32">
-        <div className="container mx-auto px-4 text-center">
-          <h1 className="text-4xl lg:text-6xl font-bold mb-6">
-            Our <span className="text-gradient">Services</span>
-          </h1>
-          <p className="text-lg text-text-secondary max-w-3xl mx-auto mb-8">
-            We offer comprehensive digital solutions to help your business grow and succeed in the modern marketplace. 
-            From design to development, marketing to analytics, we've got you covered.
-          </p>
-          <Button className="gradient-bg text-white hover:shadow-xl transition-all duration-300 transform hover:scale-105">
-            Get Started Today
-          </Button>
-        </div>
-      </section>
+    
 
       {/* Services Grid */}
       <ServicesSection />
@@ -79,9 +68,16 @@ export default function Services() {
                   <span className="text-2xl font-bold text-primary">{service.price}</span>
                 </div>
 
-                <Button className="w-full gradient-bg text-white hover:shadow-lg transition-all">
+                <Button  onClick={() => setShowModal(true)}className="w-full gradient-bg text-white hover:shadow-lg transition-all">
                   Get Quote <ArrowRight className="ml-2 w-4 h-4" />
                 </Button>
+                      {showModal && (
+        <GetPricingModal
+          serviceName="select"
+          heading="Get Quote"
+          onClose={() => setShowModal(false)}
+        />
+      )}
               </div>
             ))}
           </div>
@@ -99,12 +95,22 @@ export default function Services() {
             Contact us today for a free consultation.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button variant="secondary" className="bg-white text-primary hover:bg-white/90">
+            <Button variant="secondary"
+            onClick={() => setShowModal(true)}
+            className="bg-white text-primary hover:bg-white/90">
               Free Consultation
             </Button>
-            <Button variant="outline" className="border-white text-white hover:bg-white hover:text-primary">
-              View Portfolio
+            <Button variant="outline" className="border-white text-primary hover:bg-white hover:text-primary">
+                <Link href="/portfolio">View Portfolio</Link>
             </Button>
+                      {showModal && (
+        <GetPricingModal
+          serviceName="website"
+          heading="Free Consultation"
+          onClose={() => setShowModal(false)}
+        />
+      )}
+        
           </div>
         </div>
       </section>

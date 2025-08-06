@@ -1,0 +1,920 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Professional Portfolio & Services - Modern Web Design</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'bg': 'var(--color-bg)',
+                        'bg-secondary': 'var(--color-bg-secondary)',
+                        'text': 'var(--color-text)',
+                        'text-secondary': 'var(--color-text-secondary)',
+                        'primary': 'var(--color-primary)',
+                        'primary-dark': 'var(--color-primary-dark)',
+                        'accent': 'var(--color-accent)',
+                        'border': 'var(--color-border)',
+                    },
+                    fontFamily: {
+                        'sans': ['Inter', 'system-ui', 'sans-serif'],
+                    },
+                    animation: {
+                        'fade-in': 'fadeIn 0.5s ease-in-out',
+                        'slide-up': 'slideUp 0.6s ease-out',
+                        'float': 'float 3s ease-in-out infinite',
+                    }
+                }
+            }
+        };
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            /* Blue/White Theme (Default) */
+            --color-bg: #FFFFFF;
+            --color-bg-secondary: #F8FAFC;
+            --color-text: #1F2937;
+            --color-text-secondary: #6B7280;
+            --color-primary: #3B82F6;
+            --color-primary-dark: #1E40AF;
+            --color-accent: #10B981;
+            --color-border: #E5E7EB;
+        }
+
+        .theme-purple-dark {
+            --color-bg: #111827;
+            --color-bg-secondary: #1F2937;
+            --color-text: #F9FAFB;
+            --color-text-secondary: #D1D5DB;
+            --color-primary: #8B5CF6;
+            --color-primary-dark: #7C3AED;
+            --color-accent: #EC4899;
+            --color-border: #374151;
+        }
+
+        .theme-orange-cream {
+            --color-bg: #FEF7ED;
+            --color-bg-secondary: #FFFFFF;
+            --color-text: #431407;
+            --color-text-secondary: #92400E;
+            --color-primary: #F97316;
+            --color-primary-dark: #EA580C;
+            --color-accent: #DC2626;
+            --color-border: #FED7AA;
+        }
+
+        .theme-teal-gray {
+            --color-bg: #F8FAFC;
+            --color-bg-secondary: #FFFFFF;
+            --color-text: #334155;
+            --color-text-secondary: #64748B;
+            --color-primary: #14B8A6;
+            --color-primary-dark: #0D9488;
+            --color-accent: #06B6D4;
+            --color-border: #CBD5E1;
+        }
+
+        * {
+            transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .gradient-bg {
+            background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
+        }
+
+        .glass-effect {
+            backdrop-filter: blur(10px);
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+
+        .text-gradient {
+            background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-accent) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+    </style>
+</head>
+<body class="font-sans bg-bg text-text transition-all duration-300">
+    <!-- @COMPONENT: ThemeSwitcher -->
+    <div class="fixed top-4 right-4 z-50">
+        <div class="bg-bg-secondary border border-border rounded-lg p-2 shadow-lg">
+            <div class="flex space-x-2">
+                <button onclick="setTheme('blue-white')" 
+                        class="w-8 h-8 rounded-full bg-blue-500 border-2 border-white shadow-md hover:scale-110 transition-transform" 
+                        title="Blue/White Theme"></button>
+                <button onclick="setTheme('purple-dark')" 
+                        class="w-8 h-8 rounded-full bg-purple-600 border-2 border-gray-800 shadow-md hover:scale-110 transition-transform" 
+                        title="Purple/Dark Theme"></button>
+                <button onclick="setTheme('orange-cream')" 
+                        class="w-8 h-8 rounded-full bg-orange-500 border-2 border-orange-100 shadow-md hover:scale-110 transition-transform" 
+                        title="Orange/Cream Theme"></button>
+                <button onclick="setTheme('teal-gray')" 
+                        class="w-8 h-8 rounded-full bg-teal-500 border-2 border-gray-200 shadow-md hover:scale-110 transition-transform" 
+                        title="Teal/Gray Theme"></button>
+            </div>
+        </div>
+    </div>
+    <!-- @END_COMPONENT: ThemeSwitcher -->
+
+    <!-- @COMPONENT: Header -->
+    <header class="bg-bg border-b border-border sticky top-0 z-40 backdrop-blur-sm">
+        <div class="container mx-auto px-4 py-4">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center space-x-2">
+                    <div class="w-10 h-10 gradient-bg rounded-lg flex items-center justify-center">
+                        <i class="fas fa-bolt text-white text-xl"></i>
+                    </div>
+                    <span class="text-2xl font-bold text-gradient">DesignPro</span>
+                </div>
+                
+                <nav class="hidden md:flex items-center space-x-8">
+                    <a href="#home" class="text-text hover:text-primary transition-colors">Home</a>
+                    <a href="#services" class="text-text hover:text-primary transition-colors">Services</a>
+                    <a href="#portfolio" class="text-text hover:text-primary transition-colors">Portfolio</a>
+                    <a href="#testimonials" class="text-text hover:text-primary transition-colors">Testimonials</a>
+                    <a href="#contact" class="text-text hover:text-primary transition-colors">Contact</a>
+                </nav>
+
+                <div class="flex items-center space-x-4">
+                    <button class="gradient-bg text-white px-6 py-2 rounded-lg font-medium hover:shadow-lg transition-all duration-300 transform hover:scale-105">
+                        Get Started
+                    </button>
+                    <button class="md:hidden text-text" onclick="toggleMobileMenu()">
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Mobile Menu -->
+            <div id="mobileMenu" class="md:hidden hidden mt-4 pb-4 border-t border-border pt-4">
+                <nav class="flex flex-col space-y-4">
+                    <a href="#home" class="text-text hover:text-primary transition-colors">Home</a>
+                    <a href="#services" class="text-text hover:text-primary transition-colors">Services</a>
+                    <a href="#portfolio" class="text-text hover:text-primary transition-colors">Portfolio</a>
+                    <a href="#testimonials" class="text-text hover:text-primary transition-colors">Testimonials</a>
+                    <a href="#contact" class="text-text hover:text-primary transition-colors">Contact</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+    <!-- @END_COMPONENT: Header -->
+
+    <!-- Optional Ad Slot -->
+    <div id="adSlot" class="bg-bg-secondary border-b border-border py-2 text-center hidden">
+        <div class="container mx-auto px-4">
+            <div class="bg-border rounded-lg p-4 text-sm text-text-secondary">
+                <!-- Ad content will be placed here -->
+                <span>Advertisement Space - Toggle this section on/off</span>
+                <button onclick="toggleAdSlot()" class="ml-4 text-primary hover:text-primary-dark">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <main>
+        <!-- @COMPONENT: Hero Section -->
+        <section id="home" class="relative bg-bg py-20 lg:py-32 overflow-hidden">
+            <div class="absolute inset-0 bg-gradient-to-br from-primary/5 to-accent/5"></div>
+            <div class="container mx-auto px-4 relative z-10">
+                <div class="grid lg:grid-cols-2 gap-12 items-center">
+                    <div class="animate-slide-up">
+                        <h1 class="text-4xl lg:text-6xl font-bold mb-6 leading-tight">
+                            <span class="text-gradient">Creative Design</span><br>
+                            <span class="text-text">Solutions for Your</span><br>
+                            <span class="text-text">Business Growth</span>
+                        </h1>
+                        <p class="text-lg text-text-secondary mb-8 leading-relaxed">
+                            We craft stunning digital experiences that drive results. From web design to brand identity, 
+                            our team delivers excellence that exceeds expectations.
+                        </p>
+                        <div class="flex flex-col sm:flex-row gap-4">
+                            <button class="gradient-bg text-white px-8 py-4 rounded-lg font-medium hover:shadow-xl transition-all duration-300 transform hover:scale-105">
+                                <i class="fas fa-rocket mr-2"></i>
+                                Start Your Project
+                            </button>
+                            <button class="border-2 border-primary text-primary px-8 py-4 rounded-lg font-medium hover:bg-primary hover:text-white transition-all duration-300">
+                                <i class="fas fa-play mr-2"></i>
+                                View Our Work
+                            </button>
+                        </div>
+                    </div>
+                    <div class="relative animate-float">
+                        <!-- Modern professional workspace illustration -->
+                        <div class="bg-bg-secondary rounded-2xl p-8 shadow-2xl border border-border">
+                            <div class="grid grid-cols-2 gap-4 mb-6">
+                                <div class="h-32 gradient-bg rounded-lg opacity-80"></div>
+                                <div class="h-32 bg-accent/20 rounded-lg"></div>
+                            </div>
+                            <div class="space-y-3">
+                                <div class="h-4 bg-border rounded-full"></div>
+                                <div class="h-4 bg-border rounded-full w-3/4"></div>
+                                <div class="h-4 bg-border rounded-full w-1/2"></div>
+                            </div>
+                        </div>
+                        <div class="absolute -top-4 -right-4 w-24 h-24 gradient-bg rounded-full opacity-20 animate-pulse"></div>
+                        <div class="absolute -bottom-6 -left-6 w-32 h-32 bg-accent/10 rounded-full"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- @END_COMPONENT: Hero Section -->
+
+        <!-- @COMPONENT: Services Section -->
+        <section id="services" class="bg-bg-secondary py-20">
+            <div class="container mx-auto px-4">
+                <div class="text-center mb-16">
+                    <h2 class="text-3xl lg:text-5xl font-bold mb-6 text-text">
+                        Our <span class="text-gradient">Services</span>
+                    </h2>
+                    <p class="text-lg text-text-secondary max-w-2xl mx-auto">
+                        We offer comprehensive design and development services to help your business thrive in the digital landscape.
+                    </p>
+                </div>
+
+                <!-- @MAP: services.map(service => ( -->
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div class="bg-bg rounded-xl p-8 shadow-lg border border-border card-hover">
+                        <div class="w-16 h-16 gradient-bg rounded-lg flex items-center justify-center mb-6">
+                            <i class="fas fa-palette text-white text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-4 text-text">Web Design</h3>
+                        <p class="text-text-secondary mb-6">
+                            Custom, responsive websites that capture your brand essence and engage your audience effectively.
+                        </p>
+                        <a href="#" class="text-primary hover:text-primary-dark font-medium inline-flex items-center">
+                            Learn More <i class="fas fa-arrow-right ml-2"></i>
+                        </a>
+                    </div>
+
+                    <div class="bg-bg rounded-xl p-8 shadow-lg border border-border card-hover">
+                        <div class="w-16 h-16 gradient-bg rounded-lg flex items-center justify-center mb-6">
+                            <i class="fas fa-code text-white text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-4 text-text">Development</h3>
+                        <p class="text-text-secondary mb-6">
+                            Full-stack development solutions using modern technologies for scalable, high-performance applications.
+                        </p>
+                        <a href="#" class="text-primary hover:text-primary-dark font-medium inline-flex items-center">
+                            Learn More <i class="fas fa-arrow-right ml-2"></i>
+                        </a>
+                    </div>
+
+                    <div class="bg-bg rounded-xl p-8 shadow-lg border border-border card-hover">
+                        <div class="w-16 h-16 gradient-bg rounded-lg flex items-center justify-center mb-6">
+                            <i class="fas fa-bullhorn text-white text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-4 text-text">Digital Marketing</h3>
+                        <p class="text-text-secondary mb-6">
+                            Strategic marketing campaigns that drive traffic, generate leads, and boost your online presence.
+                        </p>
+                        <a href="#" class="text-primary hover:text-primary-dark font-medium inline-flex items-center">
+                            Learn More <i class="fas fa-arrow-right ml-2"></i>
+                        </a>
+                    </div>
+
+                    <div class="bg-bg rounded-xl p-8 shadow-lg border border-border card-hover">
+                        <div class="w-16 h-16 gradient-bg rounded-lg flex items-center justify-center mb-6">
+                            <i class="fas fa-mobile-alt text-white text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-4 text-text">Mobile Apps</h3>
+                        <p class="text-text-secondary mb-6">
+                            Native and cross-platform mobile applications that provide seamless user experiences.
+                        </p>
+                        <a href="#" class="text-primary hover:text-primary-dark font-medium inline-flex items-center">
+                            Learn More <i class="fas fa-arrow-right ml-2"></i>
+                        </a>
+                    </div>
+
+                    <div class="bg-bg rounded-xl p-8 shadow-lg border border-border card-hover">
+                        <div class="w-16 h-16 gradient-bg rounded-lg flex items-center justify-center mb-6">
+                            <i class="fas fa-search text-white text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-4 text-text">SEO Optimization</h3>
+                        <p class="text-text-secondary mb-6">
+                            Comprehensive SEO strategies to improve your search rankings and drive organic traffic.
+                        </p>
+                        <a href="#" class="text-primary hover:text-primary-dark font-medium inline-flex items-center">
+                            Learn More <i class="fas fa-arrow-right ml-2"></i>
+                        </a>
+                    </div>
+
+                    <div class="bg-bg rounded-xl p-8 shadow-lg border border-border card-hover">
+                        <div class="w-16 h-16 gradient-bg rounded-lg flex items-center justify-center mb-6">
+                            <i class="fas fa-chart-line text-white text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-4 text-text">Analytics</h3>
+                        <p class="text-text-secondary mb-6">
+                            Data-driven insights and analytics to track performance and optimize your digital strategy.
+                        </p>
+                        <a href="#" class="text-primary hover:text-primary-dark font-medium inline-flex items-center">
+                            Learn More <i class="fas fa-arrow-right ml-2"></i>
+                        </a>
+                    </div>
+                </div>
+                <!-- @END_MAP )) -->
+            </div>
+        </section>
+        <!-- @END_COMPONENT: Services Section -->
+
+        <!-- @COMPONENT: Portfolio Section -->
+        <section id="portfolio" class="bg-bg py-20">
+            <div class="container mx-auto px-4">
+                <div class="text-center mb-16">
+                    <h2 class="text-3xl lg:text-5xl font-bold mb-6 text-text">
+                        Our <span class="text-gradient">Portfolio</span>
+                    </h2>
+                    <p class="text-lg text-text-secondary max-w-2xl mx-auto">
+                        Explore our recent projects and see how we've helped businesses transform their digital presence.
+                    </p>
+                </div>
+
+                <!-- Portfolio Filter -->
+                <div class="flex flex-wrap justify-center gap-4 mb-12">
+                    <button class="px-6 py-2 rounded-full gradient-bg text-white font-medium">
+                        All Projects
+                    </button>
+                    <button class="px-6 py-2 rounded-full border border-border text-text hover:bg-primary hover:text-white transition-all">
+                        Web Design
+                    </button>
+                    <button class="px-6 py-2 rounded-full border border-border text-text hover:bg-primary hover:text-white transition-all">
+                        Mobile Apps
+                    </button>
+                    <button class="px-6 py-2 rounded-full border border-border text-text hover:bg-primary hover:text-white transition-all">
+                        Branding
+                    </button>
+                </div>
+
+                <!-- @MAP: portfolioItems.map(item => ( -->
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div class="group cursor-pointer">
+                        <div class="relative overflow-hidden rounded-xl bg-bg-secondary border border-border card-hover">
+                            <!-- E-commerce website mockup with shopping interface -->
+                            <img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600" 
+                                 alt="E-commerce website design" 
+                                 class="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-300" />
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity">
+                                <div class="absolute bottom-4 left-4 right-4 text-white">
+                                    <h3 class="text-xl font-bold mb-2">E-Commerce Platform</h3>
+                                    <p class="text-sm">Modern shopping experience with seamless checkout</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="group cursor-pointer">
+                        <div class="relative overflow-hidden rounded-xl bg-bg-secondary border border-border card-hover">
+                            <!-- Mobile app interface showing clean design -->
+                            <img src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600" 
+                                 alt="Mobile app interface design" 
+                                 class="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-300" />
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity">
+                                <div class="absolute bottom-4 left-4 right-4 text-white">
+                                    <h3 class="text-xl font-bold mb-2">Fitness Mobile App</h3>
+                                    <p class="text-sm">Health tracking with intuitive user interface</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="group cursor-pointer">
+                        <div class="relative overflow-hidden rounded-xl bg-bg-secondary border border-border card-hover">
+                            <!-- Corporate website with professional layout -->
+                            <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600" 
+                                 alt="Corporate website design" 
+                                 class="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-300" />
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity">
+                                <div class="absolute bottom-4 left-4 right-4 text-white">
+                                    <h3 class="text-xl font-bold mb-2">Corporate Website</h3>
+                                    <p class="text-sm">Professional brand presence with modern design</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="group cursor-pointer">
+                        <div class="relative overflow-hidden rounded-xl bg-bg-secondary border border-border card-hover">
+                            <!-- Restaurant app with food ordering interface -->
+                            <img src="https://pixabay.com/get/gb392585ead1f9fbe420bcb8e8569071be708ae813dd6c0ded6440d047787eca44aed1fbb00010dd0a8355910fec8dc429b6fa399880aef5595ef87dff6c50614_1280.jpg" 
+                                 alt="Restaurant ordering app" 
+                                 class="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-300" />
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity">
+                                <div class="absolute bottom-4 left-4 right-4 text-white">
+                                    <h3 class="text-xl font-bold mb-2">Restaurant App</h3>
+                                    <p class="text-sm">Food ordering with real-time tracking</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="group cursor-pointer">
+                        <div class="relative overflow-hidden rounded-xl bg-bg-secondary border border-border card-hover">
+                            <!-- Portfolio website for creative professional -->
+                            <img src="https://images.unsplash.com/photo-1561736778-92e52a7769ef?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600" 
+                                 alt="Creative portfolio website" 
+                                 class="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-300" />
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity">
+                                <div class="absolute bottom-4 left-4 right-4 text-white">
+                                    <h3 class="text-xl font-bold mb-2">Creative Portfolio</h3>
+                                    <p class="text-sm">Artistic showcase with immersive galleries</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="group cursor-pointer">
+                        <div class="relative overflow-hidden rounded-xl bg-bg-secondary border border-border card-hover">
+                            <!-- SaaS dashboard with analytics -->
+                            <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600" 
+                                 alt="SaaS dashboard interface" 
+                                 class="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-300" />
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity">
+                                <div class="absolute bottom-4 left-4 right-4 text-white">
+                                    <h3 class="text-xl font-bold mb-2">SaaS Dashboard</h3>
+                                    <p class="text-sm">Data visualization with advanced analytics</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- @END_MAP )) -->
+
+                <div class="text-center mt-12">
+                    <button class="gradient-bg text-white px-8 py-4 rounded-lg font-medium hover:shadow-xl transition-all duration-300 transform hover:scale-105">
+                        View All Projects
+                    </button>
+                </div>
+            </div>
+        </section>
+        <!-- @END_COMPONENT: Portfolio Section -->
+
+        <!-- @COMPONENT: Testimonials Section -->
+        <section id="testimonials" class="bg-bg-secondary py-20">
+            <div class="container mx-auto px-4">
+                <div class="text-center mb-16">
+                    <h2 class="text-3xl lg:text-5xl font-bold mb-6 text-text">
+                        Client <span class="text-gradient">Testimonials</span>
+                    </h2>
+                    <p class="text-lg text-text-secondary max-w-2xl mx-auto">
+                        Don't just take our word for it. Here's what our clients say about working with us.
+                    </p>
+                </div>
+
+                <!-- @MAP: testimonials.map(testimonial => ( -->
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div class="bg-bg rounded-xl p-8 shadow-lg border border-border card-hover">
+                        <div class="flex items-center mb-6">
+                            <div class="flex text-accent text-xl">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                        <p class="text-text-secondary mb-6 italic">
+                            "DesignPro transformed our online presence completely. The new website increased our conversions by 300% and perfectly captures our brand identity."
+                        </p>
+                        <div class="flex items-center">
+                            <!-- Professional businesswoman headshot -->
+                            <img src="https://pixabay.com/get/g0c5bb0b9cc5e564ea48c525b3406a57d037eae573a4c47347a8ed0d41289eeef983909f98e3871270bc2e8061bfa2ae443ab43c03508a861dfff0db7de110e79_1280.jpg" 
+                                 alt="Sarah Johnson, CEO" 
+                                 class="w-12 h-12 rounded-full object-cover mr-4" />
+                            <div>
+                                <h4 class="font-semibold text-text" data-bind="client.name">Sarah Johnson</h4>
+                                <p class="text-sm text-text-secondary" data-bind="client.position">CEO, TechStart Inc.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-bg rounded-xl p-8 shadow-lg border border-border card-hover">
+                        <div class="flex items-center mb-6">
+                            <div class="flex text-accent text-xl">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                        <p class="text-text-secondary mb-6 italic">
+                            "The mobile app they developed exceeded all our expectations. User engagement increased by 250% and the interface is incredibly intuitive."
+                        </p>
+                        <div class="flex items-center">
+                            <!-- Professional businessman headshot -->
+                            <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&h=150" 
+                                 alt="Michael Chen, Founder" 
+                                 class="w-12 h-12 rounded-full object-cover mr-4" />
+                            <div>
+                                <h4 class="font-semibold text-text" data-bind="client.name">Michael Chen</h4>
+                                <p class="text-sm text-text-secondary" data-bind="client.position">Founder, AppVenture</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-bg rounded-xl p-8 shadow-lg border border-border card-hover">
+                        <div class="flex items-center mb-6">
+                            <div class="flex text-accent text-xl">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                        <p class="text-text-secondary mb-6 italic">
+                            "Professional, creative, and delivered on time. Our new brand identity has received countless compliments from customers and partners."
+                        </p>
+                        <div class="flex items-center">
+                            <!-- Professional businesswoman headshot -->
+                            <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&h=150" 
+                                 alt="Emily Rodriguez, Marketing Director" 
+                                 class="w-12 h-12 rounded-full object-cover mr-4" />
+                            <div>
+                                <h4 class="font-semibold text-text" data-bind="client.name">Emily Rodriguez</h4>
+                                <p class="text-sm text-text-secondary" data-bind="client.position">Marketing Director, GrowthCo</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-bg rounded-xl p-8 shadow-lg border border-border card-hover">
+                        <div class="flex items-center mb-6">
+                            <div class="flex text-accent text-xl">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                        <p class="text-text-secondary mb-6 italic">
+                            "The e-commerce platform they built has revolutionized our business. Sales have tripled and customer satisfaction is at an all-time high."
+                        </p>
+                        <div class="flex items-center">
+                            <!-- Professional businessman headshot -->
+                            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&h=150" 
+                                 alt="David Thompson, Store Owner" 
+                                 class="w-12 h-12 rounded-full object-cover mr-4" />
+                            <div>
+                                <h4 class="font-semibold text-text" data-bind="client.name">David Thompson</h4>
+                                <p class="text-sm text-text-secondary" data-bind="client.position">Owner, RetailPlus</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-bg rounded-xl p-8 shadow-lg border border-border card-hover">
+                        <div class="flex items-center mb-6">
+                            <div class="flex text-accent text-xl">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                        <p class="text-text-secondary mb-6 italic">
+                            "Outstanding work on our corporate website. The design is elegant, functional, and perfectly represents our company values."
+                        </p>
+                        <div class="flex items-center">
+                            <!-- Professional businesswoman headshot -->
+                            <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&h=150" 
+                                 alt="Lisa Wang, VP Marketing" 
+                                 class="w-12 h-12 rounded-full object-cover mr-4" />
+                            <div>
+                                <h4 class="font-semibold text-text" data-bind="client.name">Lisa Wang</h4>
+                                <p class="text-sm text-text-secondary" data-bind="client.position">VP Marketing, InnovateHub</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-bg rounded-xl p-8 shadow-lg border border-border card-hover">
+                        <div class="flex items-center mb-6">
+                            <div class="flex text-accent text-xl">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                        <p class="text-text-secondary mb-6 italic">
+                            "Their SEO strategy boosted our search rankings dramatically. We now appear on the first page for all our target keywords."
+                        </p>
+                        <div class="flex items-center">
+                            <!-- Professional businessman headshot -->
+                            <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&h=150" 
+                                 alt="James Miller, Business Owner" 
+                                 class="w-12 h-12 rounded-full object-cover mr-4" />
+                            <div>
+                                <h4 class="font-semibold text-text" data-bind="client.name">James Miller</h4>
+                                <p class="text-sm text-text-secondary" data-bind="client.position">Owner, LocalBiz Pro</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- @END_MAP )) -->
+            </div>
+        </section>
+        <!-- @END_COMPONENT: Testimonials Section -->
+
+        <!-- @COMPONENT: Contact Section -->
+        <section id="contact" class="bg-bg py-20">
+            <div class="container mx-auto px-4">
+                <div class="text-center mb-16">
+                    <h2 class="text-3xl lg:text-5xl font-bold mb-6 text-text">
+                        Get In <span class="text-gradient">Touch</span>
+                    </h2>
+                    <p class="text-lg text-text-secondary max-w-2xl mx-auto">
+                        Ready to start your next project? Contact us today and let's discuss how we can help bring your vision to life.
+                    </p>
+                </div>
+
+                <div class="grid lg:grid-cols-2 gap-12">
+                    <div>
+                        <div class="space-y-8">
+                            <div class="flex items-start space-x-4">
+                                <div class="w-12 h-12 gradient-bg rounded-lg flex items-center justify-center flex-shrink-0">
+                                    <i class="fas fa-map-marker-alt text-white"></i>
+                                </div>
+                                <div>
+                                    <h3 class="text-xl font-semibold mb-2 text-text">Office Location</h3>
+                                    <p class="text-text-secondary">123 Design Street<br>Creative District, CD 12345<br>United States</p>
+                                </div>
+                            </div>
+
+                            <div class="flex items-start space-x-4">
+                                <div class="w-12 h-12 gradient-bg rounded-lg flex items-center justify-center flex-shrink-0">
+                                    <i class="fas fa-phone text-white"></i>
+                                </div>
+                                <div>
+                                    <h3 class="text-xl font-semibold mb-2 text-text">Phone Number</h3>
+                                    <p class="text-text-secondary">+1 (555) 123-4567<br>Mon - Fri: 9AM - 6PM</p>
+                                </div>
+                            </div>
+
+                            <div class="flex items-start space-x-4">
+                                <div class="w-12 h-12 gradient-bg rounded-lg flex items-center justify-center flex-shrink-0">
+                                    <i class="fas fa-envelope text-white"></i>
+                                </div>
+                                <div>
+                                    <h3 class="text-xl font-semibold mb-2 text-text">Email Address</h3>
+                                    <p class="text-text-secondary">hello@designpro.com<br>support@designpro.com</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mt-12">
+                            <h3 class="text-xl font-semibold mb-6 text-text">Follow Us</h3>
+                            <div class="flex space-x-4">
+                                <a href="#" class="w-12 h-12 bg-bg-secondary border border-border rounded-lg flex items-center justify-center hover:bg-primary hover:text-white hover:border-primary transition-all">
+                                    <i class="fab fa-facebook-f"></i>
+                                </a>
+                                <a href="#" class="w-12 h-12 bg-bg-secondary border border-border rounded-lg flex items-center justify-center hover:bg-primary hover:text-white hover:border-primary transition-all">
+                                    <i class="fab fa-twitter"></i>
+                                </a>
+                                <a href="#" class="w-12 h-12 bg-bg-secondary border border-border rounded-lg flex items-center justify-center hover:bg-primary hover:text-white hover:border-primary transition-all">
+                                    <i class="fab fa-instagram"></i>
+                                </a>
+                                <a href="#" class="w-12 h-12 bg-bg-secondary border border-border rounded-lg flex items-center justify-center hover:bg-primary hover:text-white hover:border-primary transition-all">
+                                    <i class="fab fa-linkedin-in"></i>
+                                </a>
+                                <a href="#" class="w-12 h-12 bg-bg-secondary border border-border rounded-lg flex items-center justify-center hover:bg-primary hover:text-white hover:border-primary transition-all">
+                                    <i class="fab fa-dribbble"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-bg-secondary rounded-xl p-8 border border-border">
+                        <form class="space-y-6">
+                            <!-- @STATE: formData = {name: '', email: '', subject: '', message: ''} -->
+                            <div class="grid md:grid-cols-2 gap-6">
+                                <div>
+                                    <label class="block text-sm font-medium text-text mb-2">Full Name</label>
+                                    <input type="text" 
+                                           class="w-full px-4 py-3 rounded-lg border border-border bg-bg text-text focus:ring-2 focus:ring-primary focus:border-transparent transition-all" 
+                                           placeholder="John Doe"
+                                           data-bind="formData.name">
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium text-text mb-2">Email Address</label>
+                                    <input type="email" 
+                                           class="w-full px-4 py-3 rounded-lg border border-border bg-bg text-text focus:ring-2 focus:ring-primary focus:border-transparent transition-all" 
+                                           placeholder="john@example.com"
+                                           data-bind="formData.email">
+                                </div>
+                            </div>
+                            
+                            <div>
+                                <label class="block text-sm font-medium text-text mb-2">Subject</label>
+                                <input type="text" 
+                                       class="w-full px-4 py-3 rounded-lg border border-border bg-bg text-text focus:ring-2 focus:ring-primary focus:border-transparent transition-all" 
+                                       placeholder="Project Discussion"
+                                       data-bind="formData.subject">
+                            </div>
+                            
+                            <div>
+                                <label class="block text-sm font-medium text-text mb-2">Message</label>
+                                <textarea rows="6" 
+                                          class="w-full px-4 py-3 rounded-lg border border-border bg-bg text-text focus:ring-2 focus:ring-primary focus:border-transparent transition-all resize-none" 
+                                          placeholder="Tell us about your project..."
+                                          data-bind="formData.message"></textarea>
+                            </div>
+                            
+                            <button type="submit" 
+                                    class="w-full gradient-bg text-white py-4 rounded-lg font-medium hover:shadow-xl transition-all duration-300 transform hover:scale-105"
+                                    data-event="click:handleSubmit"
+                                    data-implementation="Should validate form and submit to backend API">
+                                <i class="fas fa-paper-plane mr-2"></i>
+                                Send Message
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- @END_COMPONENT: Contact Section -->
+    </main>
+
+    <!-- @COMPONENT: Footer -->
+    <footer class="bg-bg-secondary border-t border-border py-12">
+        <div class="container mx-auto px-4">
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
+                <div>
+                    <div class="flex items-center space-x-2 mb-6">
+                        <div class="w-8 h-8 gradient-bg rounded-lg flex items-center justify-center">
+                            <i class="fas fa-bolt text-white text-sm"></i>
+                        </div>
+                        <span class="text-xl font-bold text-gradient">DesignPro</span>
+                    </div>
+                    <p class="text-text-secondary mb-4">
+                        Creating exceptional digital experiences that drive business growth and user engagement.
+                    </p>
+                    <div class="flex space-x-3">
+                        <a href="#" class="text-text-secondary hover:text-primary transition-colors">
+                            <i class="fab fa-facebook-f text-lg"></i>
+                        </a>
+                        <a href="#" class="text-text-secondary hover:text-primary transition-colors">
+                            <i class="fab fa-twitter text-lg"></i>
+                        </a>
+                        <a href="#" class="text-text-secondary hover:text-primary transition-colors">
+                            <i class="fab fa-instagram text-lg"></i>
+                        </a>
+                        <a href="#" class="text-text-secondary hover:text-primary transition-colors">
+                            <i class="fab fa-linkedin-in text-lg"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div>
+                    <h3 class="text-lg font-semibold mb-6 text-text">Services</h3>
+                    <ul class="space-y-3">
+                        <li><a href="#" class="text-text-secondary hover:text-primary transition-colors">Web Design</a></li>
+                        <li><a href="#" class="text-text-secondary hover:text-primary transition-colors">Development</a></li>
+                        <li><a href="#" class="text-text-secondary hover:text-primary transition-colors">Mobile Apps</a></li>
+                        <li><a href="#" class="text-text-secondary hover:text-primary transition-colors">Digital Marketing</a></li>
+                        <li><a href="#" class="text-text-secondary hover:text-primary transition-colors">SEO Optimization</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h3 class="text-lg font-semibold mb-6 text-text">Company</h3>
+                    <ul class="space-y-3">
+                        <li><a href="#" class="text-text-secondary hover:text-primary transition-colors">About Us</a></li>
+                        <li><a href="#" class="text-text-secondary hover:text-primary transition-colors">Our Team</a></li>
+                        <li><a href="#" class="text-text-secondary hover:text-primary transition-colors">Careers</a></li>
+                        <li><a href="#" class="text-text-secondary hover:text-primary transition-colors">Case Studies</a></li>
+                        <li><a href="#" class="text-text-secondary hover:text-primary transition-colors">Blog</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h3 class="text-lg font-semibold mb-6 text-text">Support</h3>
+                    <ul class="space-y-3">
+                        <li><a href="#" class="text-text-secondary hover:text-primary transition-colors">Help Center</a></li>
+                        <li><a href="#" class="text-text-secondary hover:text-primary transition-colors">Contact Us</a></li>
+                        <li><a href="#" class="text-text-secondary hover:text-primary transition-colors">Privacy Policy</a></li>
+                        <li><a href="#" class="text-text-secondary hover:text-primary transition-colors">Terms of Service</a></li>
+                        <li><a href="#" class="text-text-secondary hover:text-primary transition-colors">Cookie Policy</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="border-t border-border pt-8">
+                <div class="flex flex-col md:flex-row justify-between items-center">
+                    <p class="text-text-secondary text-sm mb-4 md:mb-0">
+                        © 2024 DesignPro. All rights reserved.
+                    </p>
+                    <div class="flex items-center space-x-4">
+                        <button onclick="toggleAdSlot()" class="text-sm text-text-secondary hover:text-primary transition-colors">
+                            <i class="fas fa-ad mr-1"></i>
+                            Toggle Ad Slot
+                        </button>
+                        <span class="text-text-secondary">|</span>
+                        <span class="text-sm text-text-secondary">Made with ❤️ for modern businesses</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- @END_COMPONENT: Footer -->
+
+    <script>
+        (function() {
+            // Theme switcher functionality
+            function setTheme(theme) {
+                const body = document.body;
+                
+                // Remove all theme classes
+                body.classList.remove('theme-purple-dark', 'theme-orange-cream', 'theme-teal-gray');
+                
+                // Add the selected theme class
+                if (theme !== 'blue-white') {
+                    body.classList.add(`theme-${theme.replace('-', '-')}`);
+                }
+                
+                // Save theme preference
+                localStorage.setItem('selectedTheme', theme);
+            }
+
+            // Mobile menu toggle
+            function toggleMobileMenu() {
+                const mobileMenu = document.getElementById('mobileMenu');
+                mobileMenu.classList.toggle('hidden');
+            }
+
+            // Ad slot toggle
+            function toggleAdSlot() {
+                const adSlot = document.getElementById('adSlot');
+                adSlot.classList.toggle('hidden');
+            }
+
+            // Smooth scrolling for navigation links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
+
+            // Load saved theme on page load
+            document.addEventListener('DOMContentLoaded', function() {
+                const savedTheme = localStorage.getItem('selectedTheme');
+                if (savedTheme) {
+                    setTheme(savedTheme);
+                }
+            });
+
+            // Make functions globally available
+            window.setTheme = setTheme;
+            window.toggleMobileMenu = toggleMobileMenu;
+            window.toggleAdSlot = toggleAdSlot;
+
+            // TODO: Implement form submission handler
+            // TODO: Add portfolio filtering functionality
+            // TODO: Implement lazy loading for images
+            // TODO: Add contact form validation
+            // TODO: Connect to backend API for data persistence
+            
+        })();
+    </script>
+</body>
+</html>

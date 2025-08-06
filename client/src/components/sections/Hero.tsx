@@ -1,7 +1,10 @@
+import { useState } from "react";
+import { GetPricingModal } from "../models/GetPricingModel";
 import { ArrowRight, Play, Rocket } from "lucide-react";
 import { Button } from "@/components/ui/button";
-
+import { Link } from "wouter";
 export function Hero() {
+   const [showModal, setShowModal] = useState(false);
   return (
     <section className="relative bg-bg py-20 lg:py-32 overflow-hidden">
       <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-accent/5"></div>
@@ -18,17 +21,29 @@ export function Hero() {
               our team delivers excellence that exceeds expectations.
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
-              <Button className="gradient-bg text-white hover:shadow-xl transition-all duration-300 transform hover:scale-105">
+              <Button onClick={() => setShowModal(true)}
+              className="gradient-bg text-white hover:shadow-xl transition-all duration-300 transform hover:scale-105">
                 <Rocket className="w-4 h-4 mr-2" />
                 Start Your Project
-              </Button>
-              <Button 
-                variant="outline" 
-                className="border-2 border-primary text-primary hover:bg-primary hover:text-white transition-all duration-300"
-              >
-                <Play className="w-4 h-4 mr-2" />
-                View Our Work
-              </Button>
+                  </Button>
+                   <Link to="/portfolio#allprojects" className="block w-full sm:w-auto">
+                <Button 
+                  variant="outline" 
+                  className=" w-full border-2 border-primary text-primary hover:bg-primary hover:text-white transition-all duration-300">
+                 
+                
+                  <Play className="w-4 h-4 mr-2" />
+                  View All Projects
+              
+                </Button>
+</Link>
+              {showModal && (
+        <GetPricingModal
+          serviceName="website"
+          heading="Start Your Project"
+          onClose={() => setShowModal(false)}
+        />
+      )}
             </div>
           </div>
           

@@ -1,18 +1,19 @@
 import { useState } from "react";
 import { Link, useLocation } from "wouter";
-import { Menu, X, Zap } from "lucide-react";
+import { Menu, X, Zap, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { useTheme } from "./ThemeProvider";
+import { ThemeSidebar } from "./ThemeSidebar";
+import { GetPricingModal } from "./models/GetPricingModel";
 
 export function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [showModal, setShowModal] = useState(false);
   const [location] = useLocation();
-  const { themes, theme, setTheme } = useTheme();
 
   const navigation = [
     { name: 'Home', href: '/' },
     { name: 'Services', href: '/services' },
-    { name: 'Portfolio', href: '/portfolio' },
+    { name: 'Projects', href: '/portfolio' },
     { name: 'About', href: '/about' },
     { name: 'Contact', href: '/contact' },
   ];
@@ -21,26 +22,10 @@ export function Header() {
 
   return (
     <>
-      {/* Theme Switcher */}
-      <div className="fixed top-4 right-4 z-50">
-        <div className="bg-bg-secondary border-border rounded-lg p-2 shadow-lg border">
-          <div className="flex space-x-2">
-            {themes.map((t) => (
-              <button
-                key={t.value}
-                onClick={() => setTheme(t.value)}
-                className={`w-8 h-8 rounded-full ${t.color} border-2 shadow-md hover:scale-110 transition-transform ${
-                  theme === t.value ? 'border-white ring-2 ring-primary' : 'border-white'
-                }`}
-                title={`${t.name} - ${t.description}`}
-              />
-            ))}
-          </div>
-        </div>
-      </div>
+      {/* <ThemeSidebar /> */}
 
       {/* Header */}
-      <header className="bg-bg border-b border-border sticky top-0 z-40 backdrop-blur-sm">
+      <header className="bg-bg border-b border-border sticky top-0 z-40 backdrop-blur-sm  shadow-md">
         <div className="container mx-auto px-4 py-4">
           <div className="flex items-center justify-between">
             {/* Logo */}
@@ -64,41 +49,41 @@ export function Header() {
               ))}
             </nav>
 
-            {/* CTA Button & Mobile Menu Toggle */}
-            <div className="flex items-center space-x-4">
-              <Button className="gradient-bg text-white hover:shadow-lg transition-all duration-300 transform hover:scale-105">
-                Get Started
-              </Button>
-              <button 
-                className="md:hidden text-text"
-                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              >
-                {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-              </button>
-            </div>
+            {/* CTA Button */}
+            <Button
+              onClick={() => setShowModal(true)}
+              className=" md:flex gradient-bg text-white hover:shadow-lg transition-all"
+            >
+              Get Quote <ArrowRight className="ml-2 w-4 h-4" />
+            </Button>
           </div>
 
-          {/* Mobile Menu */}
-          {isMobileMenuOpen && (
-            <div className="md:hidden mt-4 pb-4 border-t border-border pt-4">
-              <nav className="flex flex-col space-y-4">
-                {navigation.map((item) => (
-                  <Link key={item.name} href={item.href}>
-                    <span 
-                      className={`text-text hover:text-primary transition-colors ${
-                        isActive(item.href) ? 'text-primary font-medium' : ''
-                      }`}
-                      onClick={() => setIsMobileMenuOpen(false)}
-                    >
-                      {item.name}
-                    </span>
-                  </Link>
-                ))}
-              </nav>
-            </div>
+
+          {showModal && (
+            <GetPricingModal
+              serviceName="website"
+              heading="Get Website Development Pricing"
+              onClose={() => setShowModal(false)}
+            />
           )}
         </div>
+        
+          {/* Mobile Nav Bar (shows below header, only on mobile, always visible) */}
+          <nav className="fixed top-50 left-0 right-0 z-50 bg-bg border-t border-border flex md:hidden justify-around py-2">
+            {navigation.map((item) => (
+              <Link key={item.name} href={item.href}>
+                <span
+                  className={`flex flex-col items-center text-xs ${
+                    isActive(item.href) ? 'text-primary font-medium' : 'text-text'
+                  }`}
+                >
+                  {item.name}
+                </span>
+              </Link>
+            ))}
+          </nav>
       </header>
+      <ThemeSidebar />
     </>
   );
 }

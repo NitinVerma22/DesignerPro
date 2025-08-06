@@ -3,9 +3,9 @@
 @tailwind utilities;
 
 :root {
-  /* Blue/White Theme (Default) */
-  --color-bg: hsl(0, 0%, 100%);
-  --color-bg-secondary: hsl(210, 20%, 98%);
+  /* Blue/White Theme (Default) - Modified with light blue backgrounds */
+  --color-bg: hsl(210, 60%, 98%);
+  --color-bg-secondary: hsl(210, 50%, 96%);
   --color-text: hsl(222, 84%, 5%);
   --color-text-secondary: hsl(215, 16%, 47%);
   --color-primary: hsl(221, 83%, 53%);
@@ -13,21 +13,21 @@
   --color-accent: hsl(142, 76%, 36%);
   --color-border: hsl(214, 32%, 91%);
 
-  --background: hsl(0, 0%, 100%);
+  --background: hsl(210, 60%, 98%);
   --foreground: hsl(222, 84%, 5%);
-  --muted: hsl(210, 40%, 96%);
+  --muted: hsl(210, 50%, 96%);
   --muted-foreground: hsl(215, 16%, 47%);
-  --popover: hsl(0, 0%, 100%);
+  --popover: hsl(210, 60%, 98%);
   --popover-foreground: hsl(222, 84%, 5%);
-  --card: hsl(0, 0%, 100%);
+  --card: hsl(210, 60%, 98%);
   --card-foreground: hsl(222, 84%, 5%);
   --border: hsl(214, 32%, 91%);
   --input: hsl(214, 32%, 91%);
   --primary: hsl(221, 83%, 53%);
   --primary-foreground: hsl(210, 40%, 98%);
-  --secondary: hsl(210, 40%, 96%);
+  --secondary: hsl(210, 50%, 96%);
   --secondary-foreground: hsl(222, 47%, 11%);
-  --accent: hsl(210, 40%, 96%);
+  --accent: hsl(210, 50%, 96%);
   --accent-foreground: hsl(222, 47%, 11%);
   --destructive: hsl(0, 84%, 60%);
   --destructive-foreground: hsl(210, 40%, 98%);
